@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B6D922D1EE540EF00FC90FA /* MYCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6D922C1EE540EF00FC90FA /* MYCollectionViewFlowLayout.swift */; };
+		6B6D922F1EE54B0100FC90FA /* TextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6D922E1EE54B0100FC90FA /* TextCell.swift */; };
 		FD8751441E593A0200FA31E8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD8751431E593A0200FA31E8 /* AppDelegate.swift */; };
 		FD8751461E593A0200FA31E8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD8751451E593A0200FA31E8 /* ViewController.swift */; };
 		FD8751491E593A0300FA31E8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD8751471E593A0300FA31E8 /* Main.storyboard */; };
@@ -34,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6B6D922C1EE540EF00FC90FA /* MYCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MYCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		6B6D922E1EE54B0100FC90FA /* TextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextCell.swift; sourceTree = "<group>"; };
 		FD8751401E593A0100FA31E8 /* MyCollectionViewFlowLayout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyCollectionViewFlowLayout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD8751431E593A0200FA31E8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FD8751451E593A0200FA31E8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -99,6 +103,8 @@
 			children = (
 				FD8751431E593A0200FA31E8 /* AppDelegate.swift */,
 				FD8751451E593A0200FA31E8 /* ViewController.swift */,
+				6B6D922C1EE540EF00FC90FA /* MYCollectionViewFlowLayout.swift */,
+				6B6D922E1EE54B0100FC90FA /* TextCell.swift */,
 				FD8751471E593A0300FA31E8 /* Main.storyboard */,
 				FD87514A1E593A0400FA31E8 /* Assets.xcassets */,
 				FD87514C1E593A0400FA31E8 /* LaunchScreen.storyboard */,
@@ -193,7 +199,6 @@
 				TargetAttributes = {
 					FD87513F1E593A0100FA31E8 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = PCWXV66AM6;
 						ProvisioningStyle = Automatic;
 					};
 					FD8751531E593A0600FA31E8 = {
@@ -262,7 +267,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B6D922D1EE540EF00FC90FA /* MYCollectionViewFlowLayout.swift in Sources */,
 				FD8751461E593A0200FA31E8 /* ViewController.swift in Sources */,
+				6B6D922F1EE54B0100FC90FA /* TextCell.swift in Sources */,
 				FD8751441E593A0200FA31E8 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -413,7 +420,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = PCWXV66AM6;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = MyCollectionViewFlowLayout/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = minse.MyCollectionViewFlowLayout;
@@ -426,7 +433,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = PCWXV66AM6;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = MyCollectionViewFlowLayout/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = minse.MyCollectionViewFlowLayout;
@@ -512,6 +519,7 @@
 				FD87516A1E593A0600FA31E8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FD87516B1E593A0600FA31E8 /* Build configuration list for PBXNativeTarget "MyCollectionViewFlowLayoutTests" */ = {
 			isa = XCConfigurationList;
@@ -520,6 +528,7 @@
 				FD87516D1E593A0600FA31E8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FD87516E1E593A0600FA31E8 /* Build configuration list for PBXNativeTarget "MyCollectionViewFlowLayoutUITests" */ = {
 			isa = XCConfigurationList;
@@ -528,6 +537,7 @@
 				FD8751701E593A0600FA31E8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
