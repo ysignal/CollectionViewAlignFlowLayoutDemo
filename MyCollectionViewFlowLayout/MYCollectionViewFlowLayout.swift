@@ -66,17 +66,25 @@ class MYCollectionViewFlowLayout: UICollectionViewFlowLayout {
         layoutLine.removeAll()
         //重置collectionView的contentSize
         contentSize = CGSize.zero
-        //只考虑了只有一个分组的情况
+        //
         if let collectionView = self.collectionView {
-            let number = collectionView.numberOfItems(inSection: 0)
-            for i in 0..<number {
-                if let layoutAttr = layoutAttributesForItem(at: IndexPath.init(row: i, section: 0)) {
+            let sections = collectionView.numberOfSections
+            for i in 0..<sections {
+                let rows = collectionView.numberOfItems(inSection: i)
+                if let layoutAttr = layoutAttributesForSupplementaryView(ofKind: UICollectionElementKindSectionHeader, at: IndexPath.init(row: 0, section: i)) {
+                    layoutAttributes.append(layoutAttr)
+                }
+                for j in 0..<rows {
+                    if let layoutAttr = layoutAttributesForItem(at: IndexPath.init(row: j, section: i)) {
+                        layoutAttributes.append(layoutAttr)
+                    }
+                }
+                if let layoutAttr = layoutAttributesForSupplementaryView(ofKind: UICollectionElementKindSectionFooter, at: IndexPath.init(row: 0, section: i)) {
                     layoutAttributes.append(layoutAttr)
                 }
             }
         }
     }
-    
     
     override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         //size默认为itemSize

@@ -8,6 +8,35 @@
 
 import UIKit
 
+class CustomCollectionViewHeader: UICollectionReusableView {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.backgroundColor = UIColor.lightGray
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
+    func update() {
+        
+    }
+}
+
+class CustomCollectionViewFooter: UICollectionReusableView {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.backgroundColor = UIColor.lightGray
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+}
+
+let kHeaderIdentifier: String = "header"
+let kFooterIdentifier: String = "header"
+
 class ViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -36,6 +65,8 @@ class ViewController: UIViewController {
         caculateSize(with: dataSource)
         //刷新collectionView
         collectionView.reloadData()
+        collectionView.register(CustomCollectionViewHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: kHeaderIdentifier)
+        collectionView.register(CustomCollectionViewFooter.self, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: kFooterIdentifier)
     }
     
     func caculateSize(with dataSource: [String]){
@@ -64,12 +95,24 @@ extension ViewController: MYCollectionViewDelegateFlowLayout {
         //返回每个item的size
         return CGSize.init(width: widthData[indexPath.row], height: 30)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize.init(width: UIScreen.main.bounds.size.width, height: 0)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplaySupplementaryView view: UICollectionReusableView, forElementKind elementKind: String, at indexPath: IndexPath) {
+        print(view)
+    }
 }
 //MARK: - UICollectionViewDataSource
 extension ViewController: UICollectionViewDataSource {
     //返回对应组中item的个数, Demo中只有一个分组, 所以直接返回个数
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return dataSource.count
+    }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
     }
     //返回每个item
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -79,6 +122,19 @@ extension ViewController: UICollectionViewDataSource {
             return cell
         }
         return UICollectionViewCell()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if kind ==  UICollectionElementKindSectionHeader {
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: kHeaderIdentifier, for: indexPath)
+            if let customHeader = header as? CustomCollectionViewHeader {
+                //do something
+                customHeader.update()
+            }
+            return header
+        }
+        let footer = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionFooter, withReuseIdentifier: kFooterIdentifier, for: indexPath)
+        return footer
     }
 }
 
