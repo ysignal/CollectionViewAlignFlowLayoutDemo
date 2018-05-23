@@ -66,7 +66,7 @@ class MYCollectionViewFlowLayout: UICollectionViewFlowLayout {
         layoutLine.removeAll()
         //重置collectionView的contentSize
         contentSize = CGSize.zero
-        //
+        //考虑header和footer
         if let collectionView = self.collectionView {
             let sections = collectionView.numberOfSections
             for i in 0..<sections {
