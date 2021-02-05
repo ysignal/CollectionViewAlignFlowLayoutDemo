@@ -123,8 +123,8 @@ class AlignFlowLayout: UICollectionViewFlowLayout {
     override func layoutAttributesForDecorationView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         let attribute = UICollectionViewLayoutAttributes(forDecorationViewOfKind: elementKind, with: indexPath)
         
-        if let item = layoutAttributesForItem(at: indexPath) {
-            attribute.frame = CGRect(x: 10, y: item.frame.minY - 5, width: UIScreen.main.bounds.width - 20, height: item.frame.height * 2 + minimumLineSpacing + 10)
+        if let num = collectionView?.numberOfItems(inSection: indexPath.section), let first = layoutAttributesForItem(at: IndexPath(row: 0, section: indexPath.section)), let last = layoutAttributesForItem(at: IndexPath(row: num - 1, section: indexPath.section)) {
+            attribute.frame = CGRect(x: 10, y: first.frame.minY - 5, width: UIScreen.main.bounds.width - 20, height: last.frame.maxY - first.frame.minY + 10)
             attribute.zIndex = -1
         }
         
