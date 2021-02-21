@@ -16,11 +16,12 @@ class TextCell: UICollectionViewCell {
 
         textLabel.backgroundColor = .hexString("eeeeee")
         textLabel.layer.masksToBounds = true
+        textLabel.numberOfLines = 0
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        textLabel.layer.cornerRadius = frame.height/2
+//        textLabel.layer.cornerRadius = frame.height/2
     }
     
 }

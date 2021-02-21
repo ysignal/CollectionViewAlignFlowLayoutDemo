@@ -20,6 +20,28 @@ class CustomDecorationView: UICollectionReusableView {
     }
 }
 
+class CustomHeader: UICollectionReusableView {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.backgroundColor = UIColor.orange
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+}
+
+class CustomFooter: UICollectionReusableView {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.backgroundColor = UIColor.green
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+}
+
 class ViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -31,6 +53,7 @@ class ViewController: UIViewController {
         
         //初始化一个AlignFlowLayout实例
         let flowLayout = AlignFlowLayout()
+        flowLayout.scrollDirection = .vertical
         //设置方向
         flowLayout.direction = .center
         //设置行间距
@@ -44,6 +67,8 @@ class ViewController: UIViewController {
         
         //给collectionView设置布局属性, 也可以通过init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout)方法来创建一个UICollectionView对象
         collectionView.collectionViewLayout = flowLayout
+        collectionView.register(CustomHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "header")
+        collectionView.register(CustomFooter.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "footer")
         //设置代理
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -54,16 +79,20 @@ class ViewController: UIViewController {
 extension ViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let text = dataSource[indexPath.row]
+        // 测试竖直滚动
+//        let height = text.height(with: .systemFont(ofSize: 14), size: CGSize(width: 30, height: CGFloat.greatestFiniteMagnitude)) + 30
+//        return CGSize(width: 30, height: height)
+        // 测试水平滚动
         let width = text.width(with: .systemFont(ofSize: 14), size: CGSize(width: CGFloat.greatestFiniteMagnitude, height: 30)) + 30
         return CGSize(width: width, height: 30)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: UIScreen.main.bounds.size.width, height: 50)
+        return CGSize(width: 30, height: 30)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-        return CGSize(width: UIScreen.main.bounds.size.width, height: 50)
+        return CGSize(width: 30, height: 30)
     }
 }
 
@@ -73,7 +102,7 @@ extension ViewController: UICollectionViewDataSource {
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        return 3
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -83,6 +112,17 @@ extension ViewController: UICollectionViewDataSource {
             return cell
         }
         return UICollectionViewCell()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if kind == UICollectionView.elementKindSectionHeader {
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "header", for: indexPath)
+            return header
+        } else if kind == UICollectionView.elementKindSectionFooter {
+            let footer = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "footer", for: indexPath)
+            return footer
+        }
+        return UICollectionReusableView()
     }
 }
 
